@@ -1,6 +1,20 @@
 :root {
+  --toss-blue: #4990FF;
+  --toss-blue-light: #5E9CFF;
+  --toss-blue-dark: #3D7FE6;
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #191f28;
+  --gray-100: #f2f4f6;
+  --gray-200: #e5e8eb;
+  --gray-300: #d1d6db;
+  --gray-400: #b0b8c1;
+  --gray-500: #8b95a1;
+  --gray-600: #6b7684;
+  --gray-700: #4e5968;
+  --gray-800: #333d4b;
+  --gray-900: #191f28;
+  --border-radius: 16px;
+  --font-sans: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard Variable", Pretendard, Roboto, "Noto Sans KR", "Segoe UI", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -14,14 +28,11 @@ html,
 body {
   max-width: 100vw;
   overflow-x: hidden;
-}
-
-body {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.5;
   color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--background);
 }
 
 * {
@@ -33,6 +44,57 @@ body {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+}
+
+input {
+  font-family: inherit;
+}
+
+/* 토스 스타일 버튼 */
+.toss-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  border-radius: 8px;
+  height: 56px;
+  width: 100%;
+  font-size: 18px;
+  transition: background-color 0.2s;
+}
+
+.toss-button-primary {
+  background-color: var(--toss-blue);
+  color: white;
+}
+
+.toss-button-primary:hover {
+  background-color: var(--toss-blue-dark);
+}
+
+.toss-button-secondary {
+  background-color: var(--gray-100);
+  color: var(--gray-900);
+}
+
+.toss-button-secondary:hover {
+  background-color: var(--gray-200);
+}
+
+/* 토스 스타일 카드 */
+.toss-card {
+  background-color: white;
+  border-radius: var(--border-radius);
+  box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.05);
+  padding: 24px;
 }
 
 @media (prefers-color-scheme: dark) {

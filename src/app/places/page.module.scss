@@ -1,0 +1,311 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--gray-100);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  border-bottom: 1px solid #eaeaea;
+
+  h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0;
+  }
+}
+
+.nav {
+  display: flex;
+  gap: 1.5rem;
+
+  a {
+    text-decoration: none;
+    color: #666;
+    font-weight: 500;
+    padding: 0.5rem 0;
+    position: relative;
+    transition: color 0.2s;
+
+    &:hover {
+      color: #000;
+    }
+
+    &.active {
+      color: #000;
+
+      &:after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background-color: #000;
+      }
+    }
+  }
+}
+
+.main {
+  flex: 1;
+  padding: 1rem;
+}
+
+.pageTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0.75rem 0 1.25rem;
+  color: var(--gray-900);
+}
+
+.searchContainer {
+  margin-bottom: 1.5rem;
+}
+
+.searchInputWrapper {
+  position: relative;
+  width: 100%;
+}
+
+.searchIcon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--gray-500);
+}
+
+.searchInput {
+  width: 100%;
+  padding: 0.75rem 1rem 0.75rem 2.5rem;
+  border-radius: 12px;
+  border: 1px solid var(--gray-200);
+  font-size: 0.9375rem;
+  background-color: white;
+  transition: border-color 0.2s, box-shadow 0.2s;
+
+  &:focus {
+    outline: none;
+    border-color: var(--toss-blue);
+    box-shadow: 0 0 0 3px rgba(73, 144, 255, 0.1);
+  }
+}
+
+.placesGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+.placeCard {
+  border-radius: 16px;
+  overflow: hidden;
+  background-color: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.imageContainer {
+  width: 100%;
+  height: 160px;
+  overflow: hidden;
+  
+  .placeImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s;
+  }
+}
+
+.placeInfo {
+  padding: 1rem;
+
+  h2 {
+    margin: 0 0 0.25rem;
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--gray-900);
+  }
+}
+
+.coordinates {
+  font-size: 0.75rem;
+  color: var(--gray-500);
+  margin: 0 0 0.5rem;
+}
+
+.description {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--gray-700);
+  margin-bottom: 1rem;
+}
+
+.placeActions {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.viewOnMap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 8px;
+  background-color: var(--toss-blue);
+  color: white;
+  text-decoration: none;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: var(--toss-blue-dark);
+  }
+}
+
+.noResults {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 3rem 1rem;
+  color: var(--gray-500);
+  background-color: white;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  
+  p {
+    margin: 0;
+    font-size: 0.9375rem;
+  }
+}
+
+// 모달 스타일
+.placeModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+}
+
+.modalContent {
+  background-color: white;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 480px;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 1.5rem;
+  position: relative;
+}
+
+.closeButton {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--gray-500);
+  cursor: pointer;
+  z-index: 10;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background-color 0.2s;
+  
+  &:hover {
+    background-color: var(--gray-100);
+    color: var(--gray-900);
+  }
+}
+
+.modalImageContainer {
+  margin: 1rem -1.5rem;
+  overflow: hidden;
+
+  .modalImage {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+}
+
+.modalDescription {
+  line-height: 1.7;
+  margin: 1.5rem 0;
+  color: var(--gray-800);
+  font-size: 0.9375rem;
+}
+
+.modalActions {
+  margin-top: 1.5rem;
+}
+
+.viewOnMapButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.25rem;
+  background-color: var(--toss-blue);
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  width: 100%;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: var(--toss-blue-dark);
+  }
+}
+
+.footer {
+  text-align: center;
+  padding: 2rem;
+  border-top: 1px solid #eaeaea;
+  color: #666;
+}
+
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .nav {
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  .placesGrid {
+    grid-template-columns: 1fr;
+  }
+} 
