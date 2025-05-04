@@ -1,5 +1,6 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -15,7 +16,12 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "지도 장소 앱",
   description: "지도에서 장소를 찾고 정보를 확인하세요",
-  viewport: "width=device-width, initial-scale=1, maximum-scale=1",
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
 };
 
 export default function RootLayout({
@@ -25,6 +31,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
+      <head>
+        <Script
+          id="naver-maps"
+          strategy="beforeInteractive"
+          src={`https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=${process.env.NEXT_PUBLIC_MAP_KEY}`}
+        />
+      </head>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <div style={{ 
           maxWidth: '480px', 

@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import NaverMap from "../../components/NaverMap";
 import styles from "./page.module.scss";
 
 // 장소 타입 정의
@@ -22,38 +23,37 @@ export default function MapPage() {
     { id: 3, name: "명동성당", lat: 37.563545, lng: 126.987565, description: "서울대교구 주교좌 명동대성당입니다. 고딕 양식의 웅장한 건축물로 주변 데이트 코스로도 좋아요." },
   ]);
   const [selectedPlace, setSelectedPlace] = useState<Place | null>(null);
+  const [mapCenter, setMapCenter] = useState({ lat: 37.564214, lng: 126.981900 }); // 서울 중심
+  const [mapZoom, setMapZoom] = useState(12);
+  const [isMapLoaded, setIsMapLoaded] = useState(false);
 
-  // 지도 초기화
+  // 네이버 맵 로드 확인
   useEffect(() => {
-    // 실제 구현에서는 카카오맵이나 구글맵 등의 지도 API를 사용해야 합니다.
-    // 아래는 간단한 예시 코드입니다.
-    console.log("지도를 초기화합니다...");
-    
-    // 지도 API 로드 코드
-    const loadMap = async () => {
-      // 카카오맵이나 구글맵 등의 API를 로드하는 코드를 여기에 작성
-      // 예: const mapInstance = new kakao.maps.Map(document.getElementById("map"), mapOptions);
-      
-      // 간단한 시뮬레이션으로 대체
-      const mockMap = {
-        setCenter: (lat: number, lng: number) => {
-          console.log(`지도 중심 좌표 이동: 위도 ${lat}, 경도 ${lng}`);
-        }
-      };
-      
-      setMap(mockMap);
+    const checkNaverMapLoaded = () => {
+      if (window.naver && window.naver.maps) {
+        console.log("네이버 맵 객체 확인:", window.naver.maps);
+        setIsMapLoaded(true);
+      } else {
+        console.log("네이버 맵 객체가 아직 로드되지 않음");
+        setTimeout(checkNaverMapLoaded, 500);
+      }
     };
-    
-    loadMap();
+
+    checkNaverMapLoaded();
   }, []);
 
   // 장소 선택 핸들러
   const handlePlaceSelect = (place: Place) => {
     setSelectedPlace(place);
-    
-    // 선택한 장소로 지도 중심 이동
-    if (map) {
-      map.setCenter(place.lat, place.lng);
+    setMapCenter({ lat: place.lat, lng: place.lng });
+    setMapZoom(15);
+  };
+
+  // 마커 클릭 핸들러
+  const handleMarkerClick = (placeId: number) => {
+    const place = places.find(p => p.id === placeId);
+    if (place) {
+      setSelectedPlace(place);
     }
   };
 
@@ -82,10 +82,18 @@ export default function MapPage() {
         
         <div className={styles.mapSection}>
           <div id="map" className={styles.mapView}>
-            <div className={styles.mapPlaceholder}>
-              <Image src="/map-icon.svg" alt="지도 아이콘" width={40} height={40} className={styles.placeholderIcon} />
-              <p>지도가 여기에 표시됩니다.</p>
-            </div>
+            {!isMapLoaded && (
+              <div className={styles.mapPlaceholder}>
+                <p>지도를 불러오는 중입니다...</p>
+              </div>
+            )}
+            <NaverMap 
+              lat={mapCenter.lat} 
+              lng={mapCenter.lng} 
+              zoom={mapZoom} 
+              places={places}
+              onMarkerClick={handleMarkerClick}
+            />
           </div>
         </div>
         
