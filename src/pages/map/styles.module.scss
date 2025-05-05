@@ -1,0 +1,247 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--toss-blue);
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+
+  h1 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin: 0;
+  }
+}
+
+.notification {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 0 1.5rem;
+  max-width: 100%;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.searchBar {
+  display: flex;
+  margin: 1rem 0;
+  background-color: white;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.searchInput {
+  flex: 1;
+  padding: 0.875rem 1rem;
+  border: none;
+  outline: none;
+  font-size: 0.9375rem;
+}
+
+.searchButton {
+  background-color: var(--toss-blue);
+  border: none;
+  padding: 0 1rem;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: var(--toss-blue-dark);
+  }
+}
+
+.mapContainer {
+  width: 100%;
+  margin-bottom: 1rem;
+  overflow: hidden;
+  border-radius: 12px;
+
+  & > div {
+    height: 300px !important;
+  }
+}
+
+.placeDetails {
+  background-color: white;
+  border-radius: 16px;
+  padding: 1.25rem;
+  margin-bottom: 1.5rem;
+  color: var(--gray-900);
+}
+
+.placeHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.75rem;
+
+  h2 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin: 0;
+    color: var(--gray-900);
+  }
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.ratingStars {
+  color: #f59f00;
+  font-size: 0.875rem;
+}
+
+.ratingNumber {
+  color: var(--gray-600);
+  font-size: 0.875rem;
+}
+
+.placeDescription {
+  font-size: 0.9375rem;
+  color: var(--gray-700);
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+
+.placeTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tag {
+  font-size: 0.75rem;
+  color: var(--toss-blue);
+  background-color: rgba(67, 147, 247, 0.1);
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+}
+
+.placesList {
+  margin-bottom: 5rem;
+}
+
+.placesListTitle {
+  font-size: 1.125rem;
+  margin: 0 0 1rem 0;
+}
+
+.placesGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.placeCard {
+  background-color: white;
+  border-radius: 12px;
+  overflow: hidden;
+  padding: 1rem;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  display: flex;
+  color: var(--gray-900);
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.selectedCard {
+  border: 2px solid var(--toss-blue);
+}
+
+.placeImageContainer {
+  width: 40px;
+  height: 40px;
+  margin-right: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.placeInfo {
+  flex: 1;
+}
+
+.placeName {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  margin: 0 0 0.25rem 0;
+  color: var(--gray-900);
+}
+
+.tabBar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: white;
+  display: flex;
+  justify-content: space-around;
+  padding: 0.75rem 0 1.5rem;
+  border-top: 1px solid var(--gray-200);
+  z-index: 10;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.tabItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  color: var(--gray-500);
+  font-size: 0.75rem;
+  transition: color 0.2s;
+  text-decoration: none;
+
+  svg {
+    transition: color 0.2s;
+  }
+
+  &:hover {
+    color: var(--gray-800);
+  }
+}
+
+.activeTab {
+  color: var(--toss-blue) !important;
+}
+
+.mapLoading {
+  width: 100%;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--gray-100);
+  border-radius: 12px;
+  color: var(--gray-600);
+  font-size: 0.9375rem;
+} 

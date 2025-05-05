@@ -1,0 +1,235 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--toss-blue);
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+
+  h1 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin: 0;
+  }
+}
+
+.notification {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 0 1.5rem;
+  max-width: 100%;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.weatherSection {
+  margin: 1rem 0;
+  padding: 1rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+}
+
+.weatherLoading, .weatherError {
+  text-align: center;
+  padding: 1rem;
+}
+
+.weatherError {
+  color: #e74c3c;
+}
+
+.weatherInfo {
+  display: flex;
+  align-items: center;
+}
+
+.weatherIcon {
+  margin-right: 1rem;
+}
+
+.weatherDetails {
+  flex: 1;
+}
+
+.weatherLocation {
+  font-size: 1.25rem;
+  margin: 0 0 0.25rem 0;
+}
+
+.weatherTemp {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0 0 0.25rem 0;
+}
+
+.weatherDesc {
+  margin: 0 0 0.5rem 0;
+  opacity: 0.9;
+}
+
+.weatherRecommend {
+  font-size: 0.875rem;
+  opacity: 0.8;
+  margin: 0;
+}
+
+.intro {
+  margin: 1rem 0;
+}
+
+.subTitle {
+  font-size: 0.875rem;
+  font-weight: 400;
+  opacity: 0.9;
+  margin-bottom: 0.5rem;
+}
+
+.title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1.3;
+  margin: 0;
+  white-space: pre-line;
+}
+
+.bearContainer {
+  display: flex;
+  justify-content: center;
+  margin: 1.5rem 0;
+}
+
+.welcome {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.welcomeTitle {
+  font-size: 1.25rem;
+  margin: 0 0 0.5rem 0;
+}
+
+.welcomeText {
+  font-size: 0.9375rem;
+  margin: 0;
+  opacity: 0.9;
+}
+
+.vaccineList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 5rem;
+}
+
+.vaccineCard {
+  background-color: white;
+  border-radius: 16px;
+  padding: 1.25rem;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+}
+
+.vaccineInfo {
+  flex: 1;
+  z-index: 2;
+}
+
+.ageInfo {
+  font-size: 0.75rem;
+  color: var(--gray-500);
+  margin: 0 0 0.5rem 0;
+}
+
+.vaccineName {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--gray-900);
+  margin: 0 0 1rem 0;
+}
+
+.searchButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--toss-blue);
+  text-decoration: none;
+  font-weight: 500;
+
+  svg {
+    transition: transform 0.2s;
+  }
+
+  &:hover {
+    svg {
+      transform: translateX(2px);
+    }
+  }
+}
+
+.virusImage {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+  opacity: 0.7;
+}
+
+.tabBar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: white;
+  display: flex;
+  justify-content: space-around;
+  padding: 0.75rem 0 1.5rem;
+  border-top: 1px solid var(--gray-200);
+  z-index: 10;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.tabItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  color: var(--gray-500);
+  font-size: 0.75rem;
+  transition: color 0.2s;
+  text-decoration: none;
+
+  svg {
+    transition: color 0.2s;
+  }
+
+  &:hover {
+    color: var(--gray-800);
+  }
+}
+
+.activeTab {
+  color: var(--toss-blue) !important;
+} 
