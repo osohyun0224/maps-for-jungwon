@@ -9,6 +9,9 @@ const nextConfig = {
       },
     ],
   },
+  transpilePackages: ['leaflet'],
+  reactStrictMode: true,
+  swcMinify: true,
 }
 
 module.exports = nextConfig 

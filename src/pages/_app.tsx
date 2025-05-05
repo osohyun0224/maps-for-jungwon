@@ -3,6 +3,7 @@
 import { AppProps } from 'next/app';
 import Head from 'next/head';
 import { useEffect, useState } from 'react';
+import 'leaflet/dist/leaflet.css';
 import '../styles/globals.scss';
 
 function MyApp({ Component, pageProps }: AppProps) {
