@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import ImageWithSkeleton from '../../components/ImageWithSkeleton';
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import styles from "./styles.module.scss";
@@ -464,9 +465,6 @@ export default function MapPage() {
     <div className={styles.container}>
       <div className={styles.header}>
         <h1>지도로 살펴보기</h1>
-        <div className={styles.notification}>
-          <Image src="/notification.svg" alt="알림" width={24} height={24} />
-        </div>
       </div>
 
       <div className={styles.main}>
@@ -549,7 +547,7 @@ export default function MapPage() {
                   <div className={styles.placeMainInfo}>
                     <div className={styles.placeImageContainer}>
                       <div className={styles.placeImagePlaceholder}>
-                        <Image
+                        <ImageWithSkeleton
                           src={place.mainImage}
                           alt={place.name}
                           width={40}
@@ -572,7 +570,7 @@ export default function MapPage() {
                 <div className={styles.placeImagesContainer}>
                   {place.images.slice(0, 5).map((image, index) => (
                     <div key={index} className={styles.placeImageItem}>
-                      <Image
+                      <ImageWithSkeleton
                         src={image}
                         alt={`${place.name} 이미지 ${index + 1}`}
                         width={60}
@@ -604,7 +602,7 @@ export default function MapPage() {
             <div className={styles.imagesGrid}>
               {modalPlace.images.map((image, index) => (
                 <div key={index} className={styles.imageContainer}>
-                  <Image
+                  <ImageWithSkeleton
                     src={image}
                     alt={`${modalPlace.name} 이미지 ${index + 1}`}
                     width={300}

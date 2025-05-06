@@ -1,11 +1,14 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import L from 'leaflet';
+import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
+import 'leaflet/dist/leaflet.css';
 import styles from './styles.module.scss';
+import ImageWithSkeleton from '../ImageWithSkeleton';
 
 // Place 인터페이스 추가
-interface Place {
+export interface Place {
   id: number;
   name: string;
   lat: number;
@@ -15,7 +18,7 @@ interface Place {
   tags: string[];
   mainImage: string;
   images: string[];
-  naver: string; // 네이버 지도 링크 추가
+  naver: string;
 }
 
 interface LeafletMapProps {
@@ -40,6 +43,7 @@ export default function LeafletMap({
   const mapRef = useRef<HTMLDivElement>(null);
   const mapInstanceRef = useRef<L.Map | null>(null);
   const markersRef = useRef<L.Marker[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     if (!mapRef.current) return;
@@ -139,6 +143,7 @@ export default function LeafletMap({
       // 지도 리사이징 처리
       setTimeout(() => {
         map.invalidateSize();
+        setIsLoading(false);
       }, 100);
 
     } catch (error) {
@@ -159,6 +164,12 @@ export default function LeafletMap({
       ref={mapRef} 
       className={styles.mapContainer} 
       style={{ width, height }}
-    />
+    >
+      {isLoading && (
+        <div className={styles.loadingOverlay}>
+          <div className={styles.loadingSpinner}></div>
+        </div>
+      )}
+    </div>
   );
 } 

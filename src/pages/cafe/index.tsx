@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import ImageWithSkeleton from '../../components/ImageWithSkeleton';
 import styles from './styles.module.scss';
 
 const cafes = [

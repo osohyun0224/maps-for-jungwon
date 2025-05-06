@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import ImageWithSkeleton from '../../components/ImageWithSkeleton';
 import Link from "next/link";
 import styles from "./styles.module.scss";
 
@@ -546,14 +547,6 @@ export default function HomePage() {
     <div className={styles.container}>
       <div className={styles.header}>
         <h1>작업하기 좋은 카페 추천</h1>
-        <div className={styles.notification}>
-          <Image 
-            src="/notification.svg" 
-            alt="알림" 
-            width={24} 
-            height={24}
-          />
-        </div>
       </div>
       
       <div className={styles.main}>
@@ -566,7 +559,7 @@ export default function HomePage() {
           ) : weather && (
             <div className={styles.weatherInfo}>
               <div className={styles.weatherIcon}>
-                <Image 
+                <ImageWithSkeleton 
                   src={getWeatherIconUrl(weather.weather[0].icon)}
                   alt={weather.weather[0].description}
                   width={50}
@@ -631,7 +624,7 @@ export default function HomePage() {
                   </a>
                 </div>
                 <div className={styles.virusImage}>
-                  <Image 
+                  <ImageWithSkeleton 
                     src={cafe.mainImage} 
                     alt="카페 이미지" 
                     width={80} 

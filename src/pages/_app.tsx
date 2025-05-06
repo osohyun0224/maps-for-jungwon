@@ -3,6 +3,8 @@
 import { AppProps } from 'next/app';
 import Head from 'next/head';
 import { useEffect, useState } from 'react';
+import { SkeletonTheme } from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
 import 'leaflet/dist/leaflet.css';
 import '../styles/globals.scss';
 
@@ -42,17 +44,19 @@ function MyApp({ Component, pageProps }: AppProps) {
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet" />
       </Head>
       
-      <div style={{ 
-        maxWidth: '480px', 
-        margin: '0 auto', 
-        minHeight: '100vh',
-        position: 'relative',
-        overflow: 'hidden',
-        boxShadow: '0 0 20px rgba(0, 0, 0, 0.1)',
-        fontFamily: 'Inter, sans-serif'
-      }}>
-        {mounted && <Component {...pageProps} />}
-      </div>
+      <SkeletonTheme baseColor="#e0e0e0" highlightColor="#f5f5f5">
+        <div style={{ 
+          maxWidth: '480px', 
+          margin: '0 auto', 
+          minHeight: '100vh',
+          position: 'relative',
+          overflow: 'hidden',
+          boxShadow: '0 0 20px rgba(0, 0, 0, 0.1)',
+          fontFamily: 'Inter, sans-serif'
+        }}>
+          {mounted && <Component {...pageProps} />}
+        </div>
+      </SkeletonTheme>
     </>
   );
 }

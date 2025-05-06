@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
+import ImageWithSkeleton from '../../components/ImageWithSkeleton';
 import Link from 'next/link';
 import styles from './styles.module.scss';
 
@@ -552,14 +553,6 @@ export default function DateIdeasPage() {
     <div className={styles.container}>
       <div className={styles.header}>
         <h1>인기 카페 추천</h1>
-        <div className={styles.notification}>
-          <Image 
-            src="/notification.svg" 
-            alt="알림" 
-            width={24} 
-            height={24}
-          />
-        </div>
       </div>
       
       <div className={styles.main}>
@@ -570,7 +563,7 @@ export default function DateIdeasPage() {
             {topCafes.map((cafe) => (
               <div key={cafe.id} className={styles.popularCafe} onClick={() => openCafeModal(cafe)}>
                 <div className={styles.cafeImageWrapper}>
-                  <Image
+                  <ImageWithSkeleton
                     src={cafe.mainImage}
                     alt={cafe.name}
                     width={120}
@@ -603,7 +596,7 @@ export default function DateIdeasPage() {
                   {cafes.map((cafe) => (
                     <div key={cafe.id} className={styles.cafeCard} onClick={() => openCafeModal(cafe)}>
                       <div className={styles.cafeCardImageWrapper}>
-                        <Image
+                        <ImageWithSkeleton
                           src={cafe.mainImage}
                           alt={cafe.name}
                           width={80}
@@ -641,7 +634,7 @@ export default function DateIdeasPage() {
             <div className={styles.modalImageContainer}>
               {modalPlace.images.map((img, index) => (
                 <div key={index} className={styles.modalImage}>
-                  <Image
+                  <ImageWithSkeleton
                     src={img}
                     alt={`${modalPlace.name} 이미지 ${index + 1}`}
                     width={320}
