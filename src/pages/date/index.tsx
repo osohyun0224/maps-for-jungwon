@@ -5,14 +5,31 @@ import Image from 'next/image';
 import Link from 'next/link';
 import styles from './styles.module.scss';
 
-const dateIdeas = [
+// 데이트 아이디어 인터페이스
+interface DateIdea {
+  id: number;
+  title: string;
+  description: string;
+  tags: string[];
+  rating: number;
+  mainImage: string;
+  images: string[]; // 추가 이미지들 (모달에서 보여질 이미지들)
+  isOutdoor: boolean;
+}
+
+const dateIdeas: DateIdea[] = [
   {
     id: 1,
     title: '한강 피크닉',
     description: '시원한 강바람과 함께하는 로맨틱한 피크닉',
     tags: ['야외', '로맨틱', '무료'],
     rating: 4.7,
-    image: '/date-1.jpg',
+    mainImage: '/date-1.jpg',
+    images: [
+      '/hangang-1.jpg',
+      '/hangang-2.jpg',
+      '/hangang-3.jpg'
+    ],
     isOutdoor: true
   },
   {
@@ -21,7 +38,12 @@ const dateIdeas = [
     description: '예술 작품을 감상하며 대화를 나누는 지적인 데이트',
     tags: ['실내', '문화', '조용함'],
     rating: 4.5,
-    image: '/date-2.jpg',
+    mainImage: '/date-2.jpg',
+    images: [
+      '/museum-1.jpg',
+      '/museum-2.jpg',
+      '/museum-3.jpg'
+    ],
     isOutdoor: false
   },
   {
@@ -30,7 +52,12 @@ const dateIdeas = [
     description: '스릴 넘치는 활동으로 특별한 추억 만들기',
     tags: ['야외', '액티비티', '스릴'],
     rating: 4.2,
-    image: '/date-3.jpg',
+    mainImage: '/date-3.jpg',
+    images: [
+      '/extreme-1.jpg',
+      '/extreme-2.jpg',
+      '/extreme-3.jpg'
+    ],
     isOutdoor: true
   }
 ];
@@ -51,6 +78,8 @@ const weatherExample = {
 
 export default function DateIdeasPage() {
   const [filter, setFilter] = useState<'all' | 'indoor' | 'outdoor'>('all');
+  const [showModal, setShowModal] = useState(false);
+  const [modalIdea, setModalIdea] = useState<DateIdea | null>(null);
   
   const filteredDateIdeas = dateIdeas.filter(idea => {
     if (filter === 'all') return true;
@@ -63,6 +92,17 @@ export default function DateIdeasPage() {
   const recommendedDate = weatherExample.weather[0].main === 'Clear' || weatherExample.weather[0].main === 'Clouds'
     ? dateIdeas.find(idea => idea.isOutdoor)
     : dateIdeas.find(idea => !idea.isOutdoor);
+  
+  // 모달 열기
+  const openModal = (idea: DateIdea) => {
+    setModalIdea(idea);
+    setShowModal(true);
+  };
+
+  // 모달 닫기
+  const closeModal = () => {
+    setShowModal(false);
+  };
   
   return (
     <div className={styles.container}>
@@ -90,7 +130,10 @@ export default function DateIdeasPage() {
         {recommendedDate && (
           <div className={styles.recommendation}>
             <h3>오늘의 추천 데이트</h3>
-            <div className={styles.recommendationCard}>
+            <div 
+              className={styles.recommendationCard}
+              onClick={() => openModal(recommendedDate)}
+            >
               <div className={styles.recommendationInfo}>
                 <div className={styles.weatherInfo}>
                   <span className={styles.temperature}>{Math.round(weatherExample.main.temp)}°C</span>
@@ -131,7 +174,7 @@ export default function DateIdeasPage() {
         
         <div className={styles.ideaList}>
           {filteredDateIdeas.map(idea => (
-            <div key={idea.id} className={styles.ideaCard}>
+            <div key={idea.id} className={styles.ideaCard} onClick={() => openModal(idea)}>
               <div className={styles.ideaCardContent}>
                 <h3 className={styles.ideaTitle}>{idea.title}</h3>
                 <p className={styles.ideaDescription}>{idea.description}</p>
@@ -152,6 +195,45 @@ export default function DateIdeasPage() {
           ))}
         </div>
       </div>
+      
+      {/* 모달 */}
+      {showModal && modalIdea && (
+        <div className={styles.modalOverlay} onClick={closeModal}>
+          <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
+            <button className={styles.closeButton} onClick={closeModal}>×</button>
+            <h2 className={styles.modalTitle}>{modalIdea.title}</h2>
+            <p className={styles.modalDescription}>{modalIdea.description}</p>
+            
+            <div className={styles.imagesGrid}>
+              {modalIdea.images.map((image, index) => (
+                <div key={index} className={styles.imageContainer}>
+                  <Image 
+                    src={image} 
+                    alt={`${modalIdea.title} 이미지 ${index + 1}`} 
+                    width={300} 
+                    height={200}
+                    style={{ objectFit: 'cover' }}
+                  />
+                </div>
+              ))}
+            </div>
+            
+            <div className={styles.modalTags}>
+              {modalIdea.tags.map((tag, index) => (
+                <span key={index} className={styles.tag}>#{tag}</span>
+              ))}
+            </div>
+            
+            <div className={styles.modalRating}>
+              <span className={styles.ratingStars}>
+                {"★".repeat(Math.floor(modalIdea.rating))}
+                {"☆".repeat(5 - Math.floor(modalIdea.rating))}
+              </span>
+              <span className={styles.ratingNumber}>{modalIdea.rating}</span>
+            </div>
+          </div>
+        </div>
+      )}
       
       <div className={styles.tabBar}>
         <Link href="/" className={styles.tabItem}>

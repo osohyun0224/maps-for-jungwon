@@ -55,6 +55,9 @@ export default function LeafletMap({
       const marker = L.marker([lat, lng]).addTo(map);
       marker.bindPopup('선택한 위치').openPopup();
 
+      // 지도 인스턴스 저장
+      mapInstanceRef.current = map;
+
       // 현재 위치 표시 
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
@@ -62,26 +65,25 @@ export default function LeafletMap({
             const userLat = position.coords.latitude;
             const userLng = position.coords.longitude;
             
-            // 현재 위치에 마커 생성
-            const userMarker = L.circleMarker([userLat, userLng], {
-              radius: 8,
-              fillColor: '#4393F7',
-              color: '#ffffff',
-              weight: 2,
-              opacity: 1,
-              fillOpacity: 1
-            }).addTo(map);
-            
-            userMarker.bindPopup('내 위치');
+            // 현재 위치에 마커 생성 (map이 정의되었음을 확인)
+            if (mapInstanceRef.current) {
+              const userMarker = L.circleMarker([userLat, userLng], {
+                radius: 8,
+                fillColor: '#4393F7',
+                color: '#ffffff',
+                weight: 2,
+                opacity: 1,
+                fillOpacity: 1
+              }).addTo(mapInstanceRef.current);
+              
+              userMarker.bindPopup('내 위치');
+            }
           },
           (error) => {
             console.error('위치 정보를 가져오는 데 실패했습니다:', error);
           }
         );
       }
-
-      // 인스턴스 참조 저장
-      mapInstanceRef.current = map;
 
       // 지도 리사이징 처리
       setTimeout(() => {

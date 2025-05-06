@@ -244,4 +244,115 @@
   border-radius: 12px;
   color: var(--gray-600);
   font-size: 0.9375rem;
+}
+
+/* 더 많은 사진 보기 버튼 스타일 */
+.moreDetailsButton {
+  background-color: var(--toss-blue);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  width: 100%;
+  margin-top: 1rem;
+  
+  &:hover {
+    background-color: #3884e0;
+  }
+}
+
+/* 모달 관련 스타일 */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  padding: 1rem;
+}
+
+.modalContent {
+  background-color: white;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 1.5rem;
+  position: relative;
+  color: var(--gray-900);
+}
+
+.closeButton {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--gray-700);
+  cursor: pointer;
+  
+  &:hover {
+    color: var(--gray-900);
+  }
+}
+
+.modalTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem 0;
+  color: var(--gray-900);
+}
+
+.modalDescription {
+  font-size: 1rem;
+  color: var(--gray-700);
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+}
+
+.imagesGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  
+  @media (min-width: 480px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.imageContainer {
+  border-radius: 8px;
+  overflow: hidden;
+  height: 200px;
+  
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.modalTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.modalRating {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 } 
