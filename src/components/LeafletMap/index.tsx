@@ -4,12 +4,28 @@ import { useEffect, useRef } from 'react';
 import L from 'leaflet';
 import styles from './styles.module.scss';
 
+// Place 인터페이스 추가
+interface Place {
+  id: number;
+  name: string;
+  lat: number;
+  lng: number;
+  description: string;
+  rating: number;
+  tags: string[];
+  mainImage: string;
+  images: string[];
+  naver: string; // 네이버 지도 링크 추가
+}
+
 interface LeafletMapProps {
   width?: string;
   height?: string;
   lat?: number;
   lng?: number;
   zoom?: number;
+  markers?: Place[];
+  onMarkerClick?: (place: Place) => void;
 }
 
 export default function LeafletMap({ 
@@ -17,10 +33,13 @@ export default function LeafletMap({
   height = '300px',
   lat = 37.5665, 
   lng = 126.9780, 
-  zoom = 12
+  zoom = 12,
+  markers = [],
+  onMarkerClick
 }: LeafletMapProps) {
   const mapRef = useRef<HTMLDivElement>(null);
   const mapInstanceRef = useRef<L.Map | null>(null);
+  const markersRef = useRef<L.Marker[]>([]);
 
   useEffect(() => {
     if (!mapRef.current) return;
@@ -51,12 +70,44 @@ export default function LeafletMap({
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
       }).addTo(map);
 
-      // 기본 마커 추가
-      const marker = L.marker([lat, lng]).addTo(map);
-      marker.bindPopup('선택한 위치').openPopup();
-
       // 지도 인스턴스 저장
       mapInstanceRef.current = map;
+
+      // 기존 마커 제거
+      markersRef.current.forEach(marker => marker.remove());
+      markersRef.current = [];
+
+      // 카페 마커들 추가
+      if (markers && markers.length > 0) {
+        const bounds = L.latLngBounds([]);
+
+        markers.forEach(place => {
+          const marker = L.marker([place.lat, place.lng]).addTo(map);
+          marker.bindPopup(`<b>${place.name}</b><br>${place.description}`);
+          
+          // 마커 클릭 이벤트 처리
+          if (onMarkerClick) {
+            marker.on('click', () => {
+              onMarkerClick(place);
+            });
+          }
+
+          // 마커 참조 저장
+          markersRef.current.push(marker);
+          // 지도 영역 확장
+          bounds.extend([place.lat, place.lng]);
+        });
+
+        // 모든 마커가 보이도록 지도 영역 조정
+        if (markers.length > 1) {
+          map.fitBounds(bounds, { padding: [50, 50] });
+        }
+      } else {
+        // 기본 마커 추가 (카페 마커가 없을 경우)
+        const marker = L.marker([lat, lng]).addTo(map);
+        marker.bindPopup('선택한 위치').openPopup();
+        markersRef.current.push(marker);
+      }
 
       // 현재 위치 표시 
       if (navigator.geolocation) {
@@ -101,7 +152,7 @@ export default function LeafletMap({
         mapInstanceRef.current = null;
       }
     };
-  }, [lat, lng, zoom]);
+  }, [lat, lng, zoom, markers, onMarkerClick]);
 
   return (
     <div 

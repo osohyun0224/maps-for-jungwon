@@ -71,11 +71,31 @@
   }
 }
 
+.mapControlBar {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 8px;
+}
+
+.viewAllButton {
+  padding: 6px 12px;
+  background-color: var(--toss-blue);
+  color: white;
+  border: none;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+}
+
 .mapContainer {
   width: 100%;
   margin-bottom: 1rem;
-  overflow: hidden;
   border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 
   & > div {
     height: 300px !important;
@@ -152,7 +172,7 @@
 
 .placesGrid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr;
   gap: 1rem;
 }
 
@@ -164,12 +184,39 @@
   cursor: pointer;
   transition: transform 0.2s, box-shadow 0.2s;
   display: flex;
+  flex-direction: column;
   color: var(--gray-900);
   
   &:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
+}
+
+.placeCardContent {
+  display: flex;
+  width: 100%;
+}
+
+.placeMainInfo {
+  flex: 1;
+  display: flex;
+}
+
+.placeImagesContainer {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+}
+
+.placeImageItem {
+  flex-shrink: 0;
+  width: 60px;
+  height: 60px;
+  border-radius: 4px;
+  overflow: hidden;
 }
 
 .selectedCard {
@@ -246,6 +293,36 @@
   font-size: 0.9375rem;
 }
 
+/* 네이버 지도 버튼 스타일 추가 */
+.buttonGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.naverMapButton {
+  background-color: #03c75a; /* 네이버 색상 */
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  width: 100%;
+  text-align: center;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  &:hover {
+    background-color: #02a64a;
+  }
+}
+
 /* 더 많은 사진 보기 버튼 스타일 */
 .moreDetailsButton {
   background-color: var(--toss-blue);
@@ -258,7 +335,6 @@
   cursor: pointer;
   transition: background-color 0.2s;
   width: 100%;
-  margin-top: 1rem;
   
   &:hover {
     background-color: #3884e0;
@@ -355,4 +431,12 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
+}
+
+/* 모달 버튼 그룹 스타일 */
+.modalButtonGroup {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
 } 

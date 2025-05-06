@@ -43,75 +43,76 @@ export default function CafePage() {
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <h1>카페 찾기</h1>
-        <div className={styles.notification}>
-          <Image 
-            src="/notification.svg" 
-            alt="알림" 
-            width={24} 
-            height={24}
-          />
-        </div>
+        <h1>안내 사항</h1>
       </div>
       
       <div className={styles.main}>
-        <div className={styles.intro}>
-          <p className={styles.subTitle}>정원님을 위한</p>
-          <h2 className={styles.title}>
-            데이트하기 좋은<br />
-            카페를 확인해보세요
-          </h2>
-        </div>
-        
-        <div className={styles.searchBar}>
-          <input
-            type="text"
-            placeholder="카페 이름, 태그 검색..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className={styles.searchInput}
-          />
-          <button className={styles.searchButton}>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M15.5 14H14.71L14.43 13.73C15.41 12.59 16 11.11 16 9.5C16 5.91 13.09 3 9.5 3C5.91 3 3 5.91 3 9.5C3 13.09 5.91 16 9.5 16C11.11 16 12.59 15.41 13.73 14.43L14 14.71V15.5L19 20.49L20.49 19L15.5 14ZM9.5 14C7.01 14 5 11.99 5 9.5C5 7.01 7.01 5 9.5 5C11.99 5 14 7.01 14 9.5C14 11.99 11.99 14 9.5 14Z" fill="currentColor" />
-            </svg>
-          </button>
-        </div>
-        
-        <div className={styles.cafeList}>
-          {filteredCafes.length > 0 ? (
-            filteredCafes.map(cafe => (
-              <div key={cafe.id} className={styles.cafeCard}>
-                <div className={styles.cafeImageContainer}>
-                  <div className={styles.cafeImagePlaceholder}>
-                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M20 3H4V10C4 15.55 7.84 20.74 20 20.74V3ZM7 7H17V9H7V7Z" fill="currentColor"/>
-                    </svg>
-                  </div>
-                </div>
-                <div className={styles.cafeInfo}>
-                  <h3 className={styles.cafeName}>{cafe.name}</h3>
-                  <p className={styles.cafeLocation}>{cafe.location}</p>
-                  <div className={styles.cafeRating}>
-                    <span className={styles.ratingStars}>
-                      {"★".repeat(Math.floor(cafe.rating))}
-                      {"☆".repeat(5 - Math.floor(cafe.rating))}
-                    </span>
-                    <span className={styles.ratingNumber}>{cafe.rating}</span>
-                  </div>
-                  <div className={styles.cafeTags}>
-                    {cafe.tags.map((tag, index) => (
-                      <span key={index} className={styles.tag}>#{tag}</span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            ))
-          ) : (
-            <div className={styles.noResults}>
-              <p>검색 결과가 없습니다. 다른 키워드로 검색해 보세요.</p>
+        <div className={styles.aboutSection}>
+          <h2 className={styles.aboutTitle}>작업하기 좋은 카페 선정 기준</h2>
+          
+          <div className={styles.guideItem}>
+            <div className={styles.guideIcon}>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM10 17L5 12L6.41 10.59L10 14.17L17.59 6.58L19 8L10 17Z" fill="currentColor"/>
+              </svg>
             </div>
-          )}
+            <p>본 웹서비스에 작업하기 좋은 카페 선정 기준은 개발자 자신이 직접 2회 이상 방문한 찐 작업하기 좋은 카페 들만 선정하였습니다.</p>
+          </div>
+          
+          <div className={styles.guideItem}>
+            <div className={styles.guideIcon}>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM10 17L5 12L6.41 10.59L10 14.17L17.59 6.58L19 8L10 17Z" fill="currentColor"/>
+              </svg>
+            </div>
+            <p>본인이 직접 찍은 사진들로 대부분 만들었다 보니 사진의 퀄리티가 타 플랫폼 보다 낮을 수 있습니다.</p>
+          </div>
+          
+          <div className={styles.guideItem}>
+            <div className={styles.guideIcon}>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM10 17L5 12L6.41 10.59L10 14.17L17.59 6.58L19 8L10 17Z" fill="currentColor"/>
+              </svg>
+            </div>
+            <p>작업하기 좋은 카페 선정 기준은 정말 노트북 하기 좋은 카페, 불편하지 않은 좌석, 맛있는 커피, 분위기 등등의 기준으로 선정하였습니다.</p>
+          </div>
+          
+          <div className={styles.guideItem}>
+            <div className={styles.guideIcon}>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM10 17L5 12L6.41 10.59L10 14.17L17.59 6.58L19 8L10 17Z" fill="currentColor"/>
+              </svg>
+            </div>
+            <p>개발자 주 활동 지역이 서울 동부로 잠실~성수에 몰려있는 점 양해 부탁드립니다.</p>
+          </div>
+          
+          <div className={styles.guideItem}>
+            <div className={styles.guideIcon}>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM10 17L5 12L6.41 10.59L10 14.17L17.59 6.58L19 8L10 17Z" fill="currentColor"/>
+              </svg>
+            </div>
+            <p>작업하기 좋은 카페 기준은 프랜차이즈 카페는 제외했습니다.</p>
+          </div>
+          
+          <div className={styles.suggestionBox}>
+            <h3>추천 카페가 있으신가요?</h3>
+            <p>이 웹사이트에 추천할 만한 개인적인 작업하기 좋은 카페가 있다면 아래 링크로 알려주세요!</p>
+            <a 
+              href="https://forms.gle/hscMSUrnmuZ6sdFWA" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className={styles.suggestionButton}
+            >
+              카페 추천하기
+            </a>
+          </div>
+          
+          <div className={styles.developerInfo}>
+            <h3>개발자 정보</h3>
+            <p>작업하기 좋은 카페를 찾아 헤매는 모든 분들을 위해 만든 서비스입니다.</p>
+            <p>모바일 기기에 최적화되어 있으며, 계속해서 업데이트 예정입니다.</p>
+          </div>
         </div>
       </div>
       
@@ -126,19 +127,19 @@ export default function CafePage() {
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M12 2C7.59 2 4 5.59 4 10C4 15.5 12 22 12 22C12 22 20 15.5 20 10C20 5.59 16.41 2 12 2ZM12 12.5C10.62 12.5 9.5 11.38 9.5 10C9.5 8.62 10.62 7.5 12 7.5C13.38 7.5 14.5 8.62 14.5 10C14.5 11.38 13.38 12.5 12 12.5Z" fill="currentColor"/>
           </svg>
-          <span>장소조회</span>
+          <span>카페 지도</span>
         </Link>
         <Link href="/date" className={styles.tabItem}>
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M12 21.35L10.55 20.03C5.4 15.36 2 12.28 2 8.5C2 5.42 4.42 3 7.5 3C9.24 3 10.91 3.81 12 5.09C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.42 22 8.5C22 12.28 18.6 15.36 13.45 20.04L12 21.35Z" fill="currentColor"/>
           </svg>
-          <span>데이트</span>
+          <span>인기 카페</span>
         </Link>
         <Link href="/cafe" className={`${styles.tabItem} ${styles.activeTab}`}>
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M20 3H4V10C4 15.55 7.84 20.74 20 20.74V3ZM7 7H17V9H7V7Z" fill="currentColor"/>
           </svg>
-          <span>카페</span>
+          <span>안내 사항</span>
         </Link>
       </div>
     </div>

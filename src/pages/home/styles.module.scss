@@ -40,15 +40,15 @@
 }
 
 .weatherSection {
-  margin: 1rem 0;
-  padding: 1rem;
+  margin: 0.5rem 0;
+  padding: 0.75rem;
   background-color: rgba(255, 255, 255, 0.1);
   border-radius: 16px;
 }
 
 .weatherLoading, .weatherError {
   text-align: center;
-  padding: 1rem;
+  padding: 0.5rem;
 }
 
 .weatherError {
@@ -62,30 +62,51 @@
 
 .weatherIcon {
   margin-right: 1rem;
+  
+  img {
+    width: 50px;
+    height: 50px;
+  }
 }
 
 .weatherDetails {
   flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.weatherLocationTemp {
+  display: flex;
+  flex-direction: column;
+  margin-right: 1rem;
+  min-width: 80px;
 }
 
 .weatherLocation {
-  font-size: 1.25rem;
+  font-size: 1.125rem;
   margin: 0 0 0.25rem 0;
 }
 
 .weatherTemp {
-  font-size: 2rem;
+  font-size: 1.75rem;
   font-weight: 700;
-  margin: 0 0 0.25rem 0;
+  margin: 0;
+}
+
+.weatherTextInfo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .weatherDesc {
-  margin: 0 0 0.5rem 0;
+  margin: 0 0 0.25rem 0;
   opacity: 0.9;
+  font-size: 0.875rem;
 }
 
 .weatherRecommend {
-  font-size: 0.875rem;
+  font-size: 0.75rem;
   opacity: 0.8;
   margin: 0;
 }
@@ -137,7 +158,8 @@
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  margin-bottom: 5rem;
+  margin-bottom: 8rem;
+
 }
 
 .vaccineCard {
@@ -152,6 +174,7 @@
 .vaccineInfo {
   flex: 1;
   z-index: 2;
+  padding-right: 70px;
 }
 
 .ageInfo {
@@ -164,7 +187,20 @@
   font-size: 1.125rem;
   font-weight: 700;
   color: var(--gray-900);
-  margin: 0 0 1rem 0;
+  margin: 0 0 0.5rem 0;
+}
+
+.cafeDescription {
+  font-size: 0.75rem;
+  color: var(--gray-600);
+  margin: 0 0 0.75rem 0;
+  line-height: 1.4;
+  display: -webkit-box;
+  width: 85%;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .searchButton {
@@ -172,12 +208,13 @@
   align-items: center;
   gap: 0.5rem;
   font-size: 0.875rem;
-  color: var(--toss-blue);
+  color: #03c75a;
   text-decoration: none;
   font-weight: 500;
 
   svg {
     transition: transform 0.2s;
+    fill: #03c75a;
   }
 
   &:hover {
@@ -189,7 +226,7 @@
 
 .virusImage {
   position: absolute;
-  right: 0;
+  right: 15px;
   top: 50%;
   transform: translateY(-50%);
   z-index: 1;
@@ -232,4 +269,11 @@
 
 .activeTab {
   color: var(--toss-blue) !important;
+}
+
+.loadingText, .noResultsText {
+  text-align: center;
+  padding: 1rem;
+  color: white;
+  opacity: 0.8;
 } 
