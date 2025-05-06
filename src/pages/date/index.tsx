@@ -666,7 +666,7 @@ export default function DateIdeasPage() {
                 >
                   네이버 지도에서 보기
                 </a>
-                <button className={styles.findRouteButton}>길찾기</button>
+               
               </div>
             </div>
           </div>
