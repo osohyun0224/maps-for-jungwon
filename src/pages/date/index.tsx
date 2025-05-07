@@ -511,7 +511,7 @@ export default function DateIdeasPage() {
         regions['왕십리'].push(cafe);
       } else if (cafe.tags.includes('둔촌동')) {
         regions['둔촌/성내'].push(cafe);
-      } else if (cafe.tags.includes('하남동')) {
+      } else if (cafe.tags.includes('하남')) {
         regions['하남/미사'].push(cafe);
       } else if (cafe.tags.includes('의정부')) {
         regions['의정부/민락'].push(cafe);

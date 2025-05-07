@@ -1,45 +1,9 @@
 'use client';
 
-import { useState } from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
-import ImageWithSkeleton from '../../components/ImageWithSkeleton';
 import styles from './styles.module.scss';
 
-const cafes = [
-  {
-    id: 1,
-    name: '카페 테라스',
-    location: '서울시 강남구',
-    rating: 4.5,
-    tags: ['루프탑', '데이트', '뷰맛집'],
-    image: '/cafe-1.jpg'
-  },
-  {
-    id: 2,
-    name: '로지엔 케이크',
-    location: '서울시 마포구',
-    rating: 4.8,
-    tags: ['케이크', '커피', '디저트'],
-    image: '/cafe-2.jpg'
-  },
-  {
-    id: 3,
-    name: '스튜디오 카페',
-    location: '서울시 종로구',
-    rating: 4.3,
-    tags: ['인테리어', '작업', '도서'],
-    image: '/cafe-3.jpg'
-  }
-];
-
 export default function CafePage() {
-  const [searchTerm, setSearchTerm] = useState('');
-  
-  const filteredCafes = cafes.filter(cafe => 
-    cafe.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    cafe.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()))
-  );
   
   return (
     <div className={styles.container}>
@@ -57,7 +21,7 @@ export default function CafePage() {
                 <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM10 17L5 12L6.41 10.59L10 14.17L17.59 6.58L19 8L10 17Z" fill="currentColor"/>
               </svg>
             </div>
-            <p>본 웹서비스에 작업하기 좋은 카페 선정 기준은 개발자 자신이 직접 2회 이상 방문한 찐 작업하기 좋은 카페 들만 선정하였습니다.</p>
+            <p>여기에 소개된 카페들은 제가 직접 두 번 이상 가본 곳들만 골랐어요. 진짜 ‘작업 잘 되는’ 찐 카페들만 모았습니다!</p>
           </div>
           
           <div className={styles.guideItem}>
@@ -66,7 +30,7 @@ export default function CafePage() {
                 <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM10 17L5 12L6.41 10.59L10 14.17L17.59 6.58L19 8L10 17Z" fill="currentColor"/>
               </svg>
             </div>
-            <p>본인이 직접 찍은 사진들로 대부분 만들었다 보니 사진의 퀄리티가 타 플랫폼 보다 낮을 수 있습니다.</p>
+            <p>사진은 대부분 제가 직접 찍은 거라서, 다른 플랫폼처럼 예쁘진 않을 수 있습니다 ! 그래도 분위기나 느낌은 잘 담았다고 생각해요 :)</p>
           </div>
           
           <div className={styles.guideItem}>
@@ -75,7 +39,7 @@ export default function CafePage() {
                 <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM10 17L5 12L6.41 10.59L10 14.17L17.59 6.58L19 8L10 17Z" fill="currentColor"/>
               </svg>
             </div>
-            <p>작업하기 좋은 카페 선정 기준은 정말 노트북 하기 좋은 카페, 불편하지 않은 좌석, 맛있는 커피, 분위기 등등의 기준으로 선정하였습니다.</p>
+            <p>노트북 하기에 편하고, 좌석도 괜찮고, 커피도 맛있고, 분위기도 좋은—말 그대로 오래 앉아서 작업하기 좋은 카페들 위주로 골랐어요!</p>
           </div>
           
           <div className={styles.guideItem}>
@@ -84,7 +48,7 @@ export default function CafePage() {
                 <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM10 17L5 12L6.41 10.59L10 14.17L17.59 6.58L19 8L10 17Z" fill="currentColor"/>
               </svg>
             </div>
-            <p>개발자 주 활동 지역이 서울 동부로 잠실~성수에 몰려있는 점 양해 부탁드립니다.</p>
+            <p>제가 주로 서울 동부 쪽(잠실~성수)에서 활동하다 보니, 그 근처 카페가 많습니다! 이 점은 조금 양해 부탁드려요!</p>
           </div>
           
           <div className={styles.guideItem}>
@@ -93,7 +57,7 @@ export default function CafePage() {
                 <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM10 17L5 12L6.41 10.59L10 14.17L17.59 6.58L19 8L10 17Z" fill="currentColor"/>
               </svg>
             </div>
-            <p>작업하기 좋은 카페 기준은 프랜차이즈 카페는 제외했습니다.</p>
+            <p>참고로 프랜차이즈 카페는 제외했어요. 개인 카페만 담았습니다!</p>
           </div>
           
           <div className={styles.suggestionBox}>
