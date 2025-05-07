@@ -438,6 +438,8 @@ export default function MapPage() {
     setMapZoom(16);
     setMapMarkers([place]); // 선택된 카페만 지도에 표시
     setIsViewingAll(false);
+    // 스크롤을 맨 위로 부드럽게 이동
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   // 모든 카페 보기
