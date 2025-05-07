@@ -177,12 +177,10 @@ const placesData: Place[] = [
       "가정집을 개조해 화이트톤의 개방감 있는 분위기의 작업하기 좋은 카페",
     rating: 4.5,
     tags: ["카페", "서울숲", "화이트톤", "개방감", "리모델링"],
-    mainImage: "/aroundday_1.png",
+    mainImage: "/around_day_1.png",
     images: [
-      "/aroundday_1.png",
-      "/aroundday_2.png",
-      "/aroundday_3.png",
-      "/aroundday_4.png",
+      "/around_day_1.png",
+      "/around_day_3.png"
     ],
     naver: "https://naver.me/57VZrubZ"
   },
