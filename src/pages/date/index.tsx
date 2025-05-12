@@ -8,7 +8,6 @@ import styles from './styles.module.scss';
 import { Place } from '../../types';
 import { placesData } from '../../data/places';
 
-// 데이트 아이디어 인터페이스
 interface DateIdea {
   id: number;
   title: string;
@@ -16,7 +15,7 @@ interface DateIdea {
   tags: string[];
   rating: number;
   mainImage: string;
-  images: string[]; // 추가 이미지들 (모달에서 보여질 이미지들)
+  images: string[];
   isOutdoor: boolean;
 }
 
@@ -65,19 +64,6 @@ const dateIdeas: DateIdea[] = [
   }
 ];
 
-// 날씨 예시 데이터 (실제로는 API에서 가져올 예정)
-const weatherExample = {
-  main: {
-    temp: 23,
-    humidity: 65
-  },
-  weather: [
-    {
-      main: 'Clear',
-      description: '맑음'
-    }
-  ]
-};
 
 export default function DateIdeasPage() {
   const [filter, setFilter] = useState<'all' | 'indoor' | 'outdoor'>('all');
@@ -141,13 +127,11 @@ export default function DateIdeasPage() {
   
   const cafesByRegion = groupCafesByRegion(placesData);
   
-  // 특정 카페 모달 열기
   const openCafeModal = (cafe: Place) => {
     setModalPlace(cafe);
     setShowModal(true);
   };
 
-  // 모달 닫기
   const closeModal = () => {
     setShowModal(false);
     setModalIdea(null);
@@ -240,8 +224,8 @@ export default function DateIdeasPage() {
                     src={img}
                     alt={`${modalPlace.name} 이미지 ${index + 1}`}
                     width={320}
-                    height={200}
-                    objectFit="cover"
+                    height={240}
+                    style={{ objectFit: "cover" }}
                   />
                 </div>
               ))}
